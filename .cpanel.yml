@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/normalis/public_html/
-    - /bin/rsync -av dist/ $deploypath
+    - /bin/cp -R dist $DEPLOYPATH
