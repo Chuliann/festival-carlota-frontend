@@ -40,7 +40,6 @@ function App() {
   }, [])
 
   return (
-      <Router>
         <Routes>
           <Route index path='/' element={!activarSeccion ? (
             <div className='entrar'>
@@ -83,7 +82,6 @@ function App() {
 
 
       </Routes>
-    </Router>
   )
 }
 
