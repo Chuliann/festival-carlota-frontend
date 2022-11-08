@@ -21,7 +21,7 @@ const Comprar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch('/acceso/api/create-checkout-session.php', {
+        fetch('https://normalismorural.com/acceso/api/create-checkout-session.php', {
             method: 'POST',
         })
         .then(response => response.text())
