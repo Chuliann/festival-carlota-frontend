@@ -21,7 +21,7 @@ const Comprar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch('http://localhost/acceso/api/create-checkout-session.php', {
+        fetch('/acceso/api/create-checkout-session.php', {
             method: 'POST',
         })
         .then(response => response.text())
