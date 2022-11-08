@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Reproductor from "./components/Reproductor.jsx";
 import Comprar from './components/Comprar.jsx';
+import Mensaje from './components/Mensaje.jsx';
 
 /* import { chequearCodigo } from './utils/funciones.js'; */
 
@@ -35,7 +36,7 @@ function App() {
   useEffect(() => {
     
     const respondio = localStorage.getItem("respondio");
-    if(respondio) setActivarSeccion(true);
+    if(respondio) setActivarSeccion(false);
   }, [])
 
   return (
@@ -69,7 +70,7 @@ function App() {
               </div>
               <button className='cuestionario__enviar' onClick={() => handleCuestionario()}><img src={boton} alt="boton"></img></button>
             </div>
-            {respErronea ? (<Mensaje>Respuesta erronea</Mensaje>) :
+            {respErronea ? (<Mensaje tipo={"fracaso"}>Respuesta erronea</Mensaje>) :
               null
             }
           </div>
