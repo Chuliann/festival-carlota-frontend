@@ -1,6 +1,8 @@
 ---
 deployment:
   tasks:
+    - npm run build
     - export DEPLOYPATH=/home/normalis/public_html/
     - /bin/cp -R dist/assets $DEPLOYPATH
     - /bin/cp -R dist/index.html $DEPLOYPATH
+    - /bin/cp -R acceso $DEPLOYPATH

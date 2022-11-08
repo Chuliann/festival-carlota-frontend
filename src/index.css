@@ -1,70 +1,383 @@
+@font-face {
+  display: swap;
+  font-family: "Benzin";
+  src: url(fonts/BenzinExtraBold.ttf);
+}
+@font-face {
+  display: swap;
+  font-family: "BenzinBold";
+  src: url(fonts/Benzin\ Bold.ttf);
+}
+@font-face {
+  display: swap;
+  font-family: "BenzinSemi";
+  src: url(fonts/Benzin\ Semibold.ttf);
+}
+@font-face {
+  display: swap;
+  font-family: "WorkSans";
+  src: url(fonts/WorkSans-VariableFont_wght.ttf);
+}
+
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --gris: rgb(209, 209, 209);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+body,
+html {
+  
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+p {
+  font-family: "WorkSans";
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: none;
+  background: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Seccion principal */
+.entrar {
+  height: 100vh;
+  position: relative;
+}
+
+.descripcion {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: flex-end;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto; 
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.info-titulo {
+  font-family: "Benzin";
+  padding: 1rem 1rem 0 1rem;
+  margin-top: 5rem;
+  position: relative;
+}
+
+.info-titulo::before {
+  content: "";
+  display: block;
+  background-color: #000;
+  height: .5rem;
+  width: 2rem;
+  position: absolute;
+  top: -5px;
+}
+
+.info-titulo h1 {
+  font-size: 3rem;
+  text-align: center;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.info-titulo h1, 
+.info-titulo h2 {
+  margin: .5rem 0;
+} 
+
+.info-titulo p {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.entrar img {
+  max-width: 250px;
+}
+
+.cont-precio {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  padding: 1rem 0;
+  
+}
+
+.cont-precio p {
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: .5rem;
+}
+
+.cont-precio span {
+  display: inline-block;
+  color: red;
+  font-size: 1.4rem;
+  font-family: "WorkSans";
+}
+
+.cuestionario__pregunta {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+  width: 60vw;
+
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.cuestionario {
+  width: 60vw;
+
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  background-color: var(--gris);
+  padding: 1rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cuestionario p {
+  margin: .3rem 0;
+  font-size: 1.3rem;
+}
+
+.cuestionario__botones {
+  display: flex;
+  justify-content: center;
+}
+
+.cuestionario__botones .boton {
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  margin: 0 .6rem;
+  
+}
+.cuestionario__botones .boton::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -15%;
+  border-radius: 100%;
+}
+
+.cuestionario__botones .boton::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0%;
+  height: 2px;
+  left: 7px;
+  background-color: #000;
+  transition: all .3s ease-in-out;
+}
+
+.cuestionario__botones .boton:hover::after {
+  width: 80%;
+  
+}
+
+.cuestionario__botones .btn__activo::after  {
+  width: 80%;
+}
+
+.cuestionario__enviar {
+  position: absolute;
+  top: 50%;
+  transform: translate(60%, -50%);
+  right: 0;
+  cursor: pointer;
+}
+
+.cuestionario__enviar img {
+  max-width: 300px;
+}
+
+.alerta__respuesta {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: #fff;
+  font-family: "WorkSans";
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  transition: all .3s ease-in;
+  opacity: 0;
+}
+
+.exito {
+  background-color: rgb(107, 243, 79);
+  border: 1px solid rgb(44, 122, 37);
+}
+
+.fracaso {
+  background-color: rgb(255, 86, 86);
+  border: 1px solid red;
+}
+
+.alerta__respuesta.alerta__activa {
+  opacity: 1;
+}
+
+
+
+
+/* Componente video */
+#video {
+  height: 100vh;
+  background-image: url(./imgp/fondo.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iframe {
+  width: 80vw;
+  height: 80vh;
+}
+
+#overlay {
+  background-color: rgba(0, 0, 0, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 10;
+  filter: blur(8px);
+}
+
+.cupon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: "WorkSans";
+  z-index: 11;
+}
+
+.cupon__titulo {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.cupon__titulo::after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  right: 0;
+  
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #ffffff;
+  border-top: 15px solid #ffffff;
+}
+
+.cupon__cuerpo {
+  background-color: #fff;
+  padding: 1rem 3rem;
+  border: 7px solid yellow;
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  border-top-right-radius: 5rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+
+  text-align: center;
+
+}
+
+.cupon__cuerpo p {
+  margin: .6rem 0;
+}
+
+.cupon__cuerpo input {
+  border: none;
+  background-color: var(--gris);
+  padding: .2rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.cupon__cuerpo button {
+  text-align: center;
+  font-size: 1rem;
+  margin: .3rem 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cupon__boton {
+  background-color: #000;
+  padding: .5rem 2rem;
+  color: yellow;
+  font-weight: normal;
+  border-radius: 1rem;
+}
+
+.button_back {
+  display: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  font-size: 1.7rem;
+  font-family: "WorkSans";
+  cursor: pointer;
+  padding: .4rem;
+  margin: 1rem;
+  max-width: 100px;
+  text-decoration: none;
+}
+.comprar_image {
+  max-width: 200px;
+}
+
+.mg_auto {
+  margin: 0 auto;
+}
+
+.form__precio {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 1rem auto;
+  justify-items: center;
+}
+
+.form__precio .flex__ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form__precio .flex__ input {
+  max-width: 100px;
 }
