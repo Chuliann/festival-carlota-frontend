@@ -2,8 +2,8 @@
   "name": "preestreno",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://normalismorural.com",
   "type": "module",
+  "homepage": "https://normalismorural.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
