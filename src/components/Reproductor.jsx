@@ -78,7 +78,7 @@ const Reproductor = () => {
                         className="cupon__boton"
                         to="/comprar"
                     >
-                        La clave solo dura 6 horas
+                        La clave solo dura 24 horas
                     </Link>
                 </div>
             </div>
