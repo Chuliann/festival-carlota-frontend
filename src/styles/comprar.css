@@ -1,0 +1,86 @@
+.comprar__section {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+    column-gap: 1rem;
+}
+
+.comprar__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* navbar */
+.comprar__navbar {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comprar__navbar img {
+    transition: all .3s ease-in-out;
+}
+.comprar__navbar img:hover {
+    transform: scale(1.05);
+}
+
+.button_back {
+    display: flex;
+    font-size: 1.5rem;
+    padding-right: .3rem;
+    font-family: "WorkSans";
+    cursor: pointer;
+    text-decoration: none;
+    border: 3px solid #000;
+    border-radius: 2rem;
+    transition: all .3s ease-in-out;
+}
+.button_back:hover {
+    color: rgb(63, 48, 48);
+    border-color: rgb(63, 48, 48);
+    transform: scale(1.05);
+}
+.button_back p {
+    margin: 0;
+}
+.comprar_image {
+    max-width: 250px;
+    margin-bottom: 1rem;
+}
+
+.form__precio {
+    margin: 1rem auto;
+}
+
+.form__campo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.form__precio input[type="number"] {
+    max-width: 100px;
+}
+
+.form__precio .btn {
+    width: 100%;
+}
+
+.form__precio input[type="mail"] {
+    width: 250px;
+}
+
+#payment-form .btn {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+
+

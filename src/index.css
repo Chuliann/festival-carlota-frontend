@@ -26,8 +26,18 @@
 
 body,
 html {
-  
   margin: 0;
+  overflow-x: hidden;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  background-color: #fff7f7;
 }
 
 p {
@@ -37,6 +47,10 @@ p {
 button {
   border: none;
   background: transparent;
+}
+
+.negrita {
+  font-weight: bold;
 }
 
 /* Seccion principal */
@@ -58,6 +72,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: end;
+}
+
+.mg_auto {
+  margin: 0 auto;
 }
 
 .info-titulo {
@@ -143,8 +161,8 @@ button {
   left: 0;
   bottom: 10px;
   background-color: var(--gris);
-  padding: 1rem 0;
-
+  padding: 1rem .3rem;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,6 +171,7 @@ button {
 .cuestionario p {
   margin: .3rem 0;
   font-size: 1.3rem;
+  color: rgb(59, 59, 59);
 }
 
 .cuestionario__botones {
@@ -239,6 +258,92 @@ button {
 .alerta__respuesta.alerta__activa {
   opacity: 1;
 }
+
+.celular {
+  display: none;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .descripcion {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 2rem 1rem;
+  }
+
+  .info-titulo::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .info-titulo {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .info-titulo h1 {
+    font-size: 2.5rem;
+  }
+  .info-titulo h2 {
+    font-size: 1.4rem;
+  }
+  .celular {
+    display: block;
+  }
+  .contenedor_cartel {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .contenedor_cartel img {
+    margin: 1rem 0;
+  }
+  .sitio {
+    display: none;
+  }
+
+  .cont-precio {
+    max-height: 100px;
+    margin-top: auto;
+    font-size: .8rem;
+    margin: 0;
+  }
+
+
+
+  .cuestionario__pregunta {
+    position: initial;
+    width: 100%;
+    font-size: 1rem;
+
+  }
+
+  .cuestionario {
+    position: relative;
+    width: 100%;
+    padding: 2rem 0;
+  }
+  .cuestionario p {
+    font-size: 1rem;
+  }
+
+  .cuestionario__enviar {
+    top: 100%;
+    right: 30%;
+  }
+  .cuestionario__enviar img {
+    max-width: 200px;
+  }
+
+  .espacio__blanco {
+    height: 60px;
+  }
+
+  .alerta__respuesta {
+    font-size: .8rem;
+    left: 0;
+    bottom: 0;
+    right: unset;
+  }
+}
+
 
 
 
@@ -342,42 +447,34 @@ button {
   color: yellow;
   font-weight: normal;
   border-radius: 1rem;
+  transition: background .3s ease-in;
 }
 
-.button_back {
-  display: absolute;
-  top: 0;
-  left: 0;
-  align-items: center;
-  font-size: 1.7rem;
-  font-family: "WorkSans";
-  cursor: pointer;
-  padding: .4rem;
-  margin: 1rem;
-  max-width: 100px;
-  text-decoration: none;
-}
-.comprar_image {
-  max-width: 200px;
+.cupon__boton:hover {
+  color: yellow;
+  background-color: rgb(71, 70, 70);
 }
 
-.mg_auto {
-  margin: 0 auto;
-}
 
-.form__precio {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: 1rem auto;
-  justify-items: center;
-}
-
-.form__precio .flex__ {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.form__precio .flex__ input {
-  max-width: 100px;
+@media only screen and (max-width: 897px) {
+  .cupon {
+    width: 90vw;
+    max-width: 400px;
+    padding: 1rem 1rem;
+  }
+  .cupon__titulo {
+    font-size: 1rem;
+  }
+  .cupon__cuerpo {
+    padding: .7rem 1.5rem;
+  }
+  .cupon__cuerpo p {
+    font-size: 1rem;
+    
+  }
+  .cupon__boton {
+    font-size: .7rem;
+    display: inline;
+    padding: .2rem 0;
+  }
 }

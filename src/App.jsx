@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Reproductor from "./components/Reproductor.jsx";
 import Comprar from './components/Comprar.jsx';
 import Mensaje from './components/Mensaje.jsx';
+import PaymentStatus from './components/PaymentStatus.jsx';
+import Cupon from './components/Cupon.jsx';
+
 
 /* import { chequearCodigo } from './utils/funciones.js'; */
 
@@ -15,6 +18,7 @@ function App() {
   const [pregunta, setPregunta] = useState(0);
   const [activarSeccion, setActivarSeccion] = useState(false);
   const [respErronea, setRespErronea] = useState(false);
+  const [comproCupon, setComproCupon] = useState(null);
 
   const handleCuestionario = () => {
     if(pregunta === 1) {
@@ -36,7 +40,11 @@ function App() {
   useEffect(() => {
     
     const respondio = localStorage.getItem("respondio");
-    if(respondio) setActivarSeccion(false);
+    if(respondio) setActivarSeccion(true);
+    var cupon = localStorage.getItem("cupon");
+    if(cupon) {
+      setComproCupon(cupon);
+    }
   }, [])
 
   return (
@@ -50,12 +58,17 @@ function App() {
                   <h2>Preestreno de</h2>
                   <h1>La piedra <br></br> en el zapato</h1>
                   <p>para Normalistas Rurales</p>
-                  <div className='cont-precio'>
+                  <div className='cont-precio sitio'>
                     <span>Precio:</span>  <p> Contribución voluntaria</p>
                   </div>
                 </div>
               </div>
-              <img src={cartel} alt="cartel"></img>
+              <div className='contenedor_cartel'>
+                <div className='cont-precio celular'>
+                  <span>Precio:</span><p> Contribución voluntaria</p>
+                </div>
+                <img src={cartel} alt="cartel"></img>
+              </div>
             </div>
             <div className='cuestionario__pregunta'>
               <p>Responde a esta pregunta para acceder <br></br> a la página del video: </p>
@@ -70,6 +83,7 @@ function App() {
               </div>
               <button className='cuestionario__enviar' onClick={() => handleCuestionario()}><img src={boton} alt="boton"></img></button>
             </div>
+            <div className='celular espacio__blanco'></div>
             {respErronea ? (<Mensaje tipo={"fracaso"}>Respuesta erronea</Mensaje>) :
               null
             }
@@ -78,8 +92,8 @@ function App() {
           <Reproductor />
         } />
 
-        <Route path='/comprar' element={<Comprar />} />
-        {/* <Route path='/success' element={<Confirmar />} /> */}
+        <Route path='/comprar' element={comproCupon != "" ? <Comprar /> : <Cupon />} />
+        <Route path='/completado' element={<PaymentStatus />} />
 
 
       </Routes>
