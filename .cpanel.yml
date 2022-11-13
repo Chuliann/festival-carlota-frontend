@@ -2,6 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/normalis/public_html/
-    - /bin/cp -R dist/assets $DEPLOYPATH/assets
+    - /bin/cp -R dist/assets $DEPLOYPATH
     - /bin/cp -R dist/index.html $DEPLOYPATH
     - /bin/cp -R acceso $DEPLOYPATH
