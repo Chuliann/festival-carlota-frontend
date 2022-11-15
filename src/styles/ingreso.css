@@ -1,8 +1,9 @@
 
 .ingreso {
     height: 100vh;
-    background-image: url(../imgp/fondo2.png);
+    background-image: url(../imgp/fondo1.jpg);
     background-position: center center;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;

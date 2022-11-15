@@ -6,7 +6,7 @@ const Reproductor = () => {
     const [pago, setPago] = useState(false);
     const [cuponInput, setCuponInput] = useState("");
     const [tiempo, setTiempo] = useState(false);
-    const [verTrailer, setVerTrailer] = useState(true);
+    const [verFragmento, setVerFragmento] = useState(true);
     const [error, setError] = useState("");
 
     const handleCuponInput = async () => {
@@ -15,18 +15,24 @@ const Reproductor = () => {
                 codigo: cuponInput,
             };
             try {
-                await fetch("https://normalismorural.com/acceso/api/usar_cupon.php", {
-                    method: "POST",
-                    body: JSON.stringify(body),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
+                await fetch(
+                    "https://normalismorural.com/acceso/api/usar_cupon.php",
+                    {
+                        method: "POST",
+                        body: JSON.stringify(body),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.exito) {
                             localStorage.setItem("normalismo_permiso", true);
-                            localStorage.setItem("cupon_normalismo", cuponInput);
+                            localStorage.setItem(
+                                "cupon_normalismo",
+                                cuponInput
+                            );
                             setPermiso(true);
                         } else {
                             setError(data.error);
@@ -40,15 +46,18 @@ const Reproductor = () => {
 
     const chequearCupon = async () => {
         try {
-            await fetch("https://normalismorural.com/acceso/api/obtener_cupon.php", {
-                method: "POST",
-                body: JSON.stringify({
-                    codigo: localStorage.getItem("cupon_normalismo"),
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            await fetch(
+                "https://normalismorural.com/acceso/api/obtener_cupon.php",
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        codigo: localStorage.getItem("cupon_normalismo"),
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
                 .then((response) => response.json())
                 .then((data) => handlePelicula(data.diferencia));
         } catch (error) {
@@ -61,7 +70,9 @@ const Reproductor = () => {
             setPermiso(true);
         } else {
             setPermiso(false);
-            setError("Se termino el tiempo, compra otra clave o abandona el sitio.");
+            setError(
+                "Se termino el tiempo, compra otra clave o abandona el sitio."
+            );
         }
     };
 
@@ -74,12 +85,12 @@ const Reproductor = () => {
     useEffect(() => {
         setTiempo(true);
         if (localStorage.getItem("entro")) {
-            setVerTrailer(false);
+            setVerFragmento(false);
         }
         if (localStorage.getItem("normalismo_permiso")) {
             loop();
         }
-        if(localStorage.getItem('cupon_normalismo')) {
+        if (localStorage.getItem("cupon_normalismo")) {
             setPago(true);
         }
     }, []);
@@ -94,8 +105,8 @@ const Reproductor = () => {
         setTimeout(() => {
             setTiempo(false);
             localStorage.setItem("entro", true);
-        }, 70000);
-
+            setVerFragmento(false);
+        }, 30000);
     }, [tiempo]);
 
     useEffect(() => {
@@ -107,7 +118,7 @@ const Reproductor = () => {
     return (
         <>
             <div id="video">
-                {permiso ? (
+                {permiso || verFragmento  ? (
                     <iframe
                         src="https://player.vimeo.com/video/745694304?h=d3650cd2a6&amp;app_id=122963\"
                         width="1024"
@@ -117,66 +128,46 @@ const Reproductor = () => {
                         allowFullScreen
                     ></iframe>
                 ) : (
-                    <div>
-                        {tiempo && verTrailer ? (
-                            <div>
-                                <iframe
-                                    src="https://www.youtube-nocookie.com/embed/mE8TNut5p1E?autoplay=1"
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
+                    <div className="cupon">
+                        <div className="cupon__titulo">
+                            Introduce la clave <br></br> para continuar viendo
+                        </div>
+                        <div className="cupon__cuerpo">
+                            <p>
+                                {" "}
+                                <b>A)</b> Introducir Clave{" "}
+                            </p>
+                            <div className="cupon__ingresar">
+                                <input
+                                    type="text"
+                                    placeholder="XX-XXXX-XX"
+                                    onChange={(e) =>
+                                        setCuponInput(e.target.value)
+                                    }
+                                />
+                                <button onClick={() => handleCuponInput()}>
+                                    Ingresar
+                                </button>
                             </div>
-                        ) : (
-                            <div className="cupon">
-                                <div className="cupon__titulo">
-                                    Introduce la clave <br></br> para continuar
-                                    viendo
+                            <p>
+                                {" "}
+                                <b>B)</b> Comprar Clave
+                            </p>
+                            <Link className="cupon__boton" to="/comprar">
+                                {pago
+                                    ? "Ver mi cupon"
+                                    : "La clave tiene una validez de 24 horas"}
+                            </Link>
+                            {error && (
+                                <div class="alert alert-dismissible alert-danger">
+                                    <strong>{error}</strong>
                                 </div>
-                                <div className="cupon__cuerpo">
-                                    <p>
-                                        {" "}
-                                        <b>A)</b> Introducir Clave{" "}
-                                    </p>
-                                    <div className="cupon__ingresar">
-                                        <input
-                                            type="text"
-                                            placeholder="XX-XXXX-XX"
-                                            onChange={(e) =>
-                                                setCuponInput(e.target.value)
-                                            }
-                                        />
-                                        <button
-                                            onClick={() => handleCuponInput()}
-                                        >
-                                            Ingresar
-                                        </button>
-                                    </div>
-                                    <p>
-                                        {" "}
-                                        <b>B)</b> Comprar Clave
-                                    </p>
-                                    <Link
-                                        className="cupon__boton"
-                                        to="/comprar"
-                                    >
-                                        {pago ? "Ver mi cupon" : "La clave tiene una validez de 24 horas"}
-                                    </Link>
-                                    {error && (
-                                        <div class="alert alert-dismissible alert-danger">
-                                            <strong>{error}</strong>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 )}
 
-                {!verTrailer && !permiso ? (
-                    <div id="overlay"></div>
-                ) : null}
+                {!verFragmento && !permiso ? <div id="overlay"></div> : null}
             </div>
         </>
     );

@@ -115,6 +115,7 @@ const Comprar = () => {
                             <form onSubmit={handleSubmit} className="form__precio">
                                 <legend className="text-center">Cupon para ver <br></br> "La piedra en el Zapato"</legend>
                                 <p className="text-center"><cite>Ver "La piedra en el zapato" en pre-estreno solidario</cite></p>
+                                <p className='chiquito-p'>Con tu apoyo conseguiremos producir materiales de prensa y mandar la película a festivales internacionales de cine para darle visibilidad y prestigio al Normalismo Rural</p>
                                 <div className="form__campo">
                                     <label>Ingresa un importe mayor a 25 pesos mexicanos</label>
                                     <div>

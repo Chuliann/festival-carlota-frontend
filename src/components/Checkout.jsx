@@ -41,8 +41,24 @@ const CheckoutForm = ({ precio, setCupon }) => {
         })
         .then(function(result) {
             setIsLoading(false);
-            if(result.paymentIntent.status === "succeeded") {
-                handlePagoExitoso();       
+            switch (paymentIntent.status) {
+                case 'succeeded':
+                    handlePagoExitoso();
+                    break;
+        
+                  case 'processing':
+                    setErrorMessage("El pago se esta procesando. Te avisaremos cuando llegue.");
+                    break;
+        
+                  case 'requires_payment_method':
+                    // Redirect your user back to your payment page to attempt collecting
+                    // payment again
+                    setErrorMessage('Pago fallido. Intente otro metodo.');
+                    break;
+        
+                default:
+                    setErrorMessage('Algo fue mal.');
+                break;
             }
         });
 
@@ -137,7 +153,6 @@ const CheckoutForm = ({ precio, setCupon }) => {
                     {`Pagar ${precio}mxn`}
                 </button>
             )}
-            {/* Show error message to your customers */}
             {errorMessage && <div className="alert alert-dismissible alert-danger">{errorMessage}</div>}
         </form>
     );
