@@ -70,10 +70,8 @@ const CheckoutForm = ({ precio, setCupon }) => {
         })
         .then(response => response.json())
         .then(data => {
-            localStorage.setItem('cupon_normalismo', data);    
-            location.reload();
+            setCupon(data);
         });
-        setCupon(localStorage.getItem('cupon_normalismo'));
     }
 
     useEffect(() => {
@@ -122,6 +120,11 @@ const CheckoutForm = ({ precio, setCupon }) => {
     useEffect(() => {
         setIsLoading(false);
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cupon_normalismo', cupon);
+        location.reload();
+    }, [cupon])
 
     return (
         <form id="payment-form" onSubmit={handleSubmit}>

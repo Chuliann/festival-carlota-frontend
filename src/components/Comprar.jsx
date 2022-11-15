@@ -74,7 +74,6 @@ const Comprar = () => {
                 <div className="modalCodigo toast show" role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="toast-header">
                         <strong className="me-auto">Codigo:</strong>
-                        <small>Quedan... horas</small>
                         <button type="button" className="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close" onClick={() => setModalAbierto(false)}>
                             <span aria-hidden="true"></span>
                         </button>
