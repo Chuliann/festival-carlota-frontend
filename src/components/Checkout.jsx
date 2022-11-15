@@ -31,7 +31,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
             return;
         }
 
-        const { error } = await stripe.confirmPayment({
+        const resultado = await stripe.confirmPayment({
             //`Elements` instance that was used to create the Payment Element
             elements,
             confirmParams: {
@@ -62,16 +62,17 @@ const CheckoutForm = ({ precio, setCupon }) => {
                     break;
                 }
             } catch (error) {
-                console.log(error);
+                /* console.log(error); */
+                
             }
         });
 
-        if (error) {
+        if (resultado.error) {
             setIsLoading(false);
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Show error to your customer (for example, payment
             // details incomplete)
-            setErrorMessage(error.message);
+            setErrorMessage(resultado.error.message);
         } else {
             // Your customer will be redirected to your `return_url`. For some payment
             // methods like iDEAL, your customer will be redirected to an intermediate
