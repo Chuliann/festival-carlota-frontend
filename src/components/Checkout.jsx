@@ -62,23 +62,15 @@ const CheckoutForm = ({ precio, setCupon }) => {
                         setErrorMessage('Algo fue mal.');
                     break;
                 }
+                if(result.error) {
+                    setErrorMessage(result.error.message);
+                }
             } catch (error) {
                 /* console.log(error); */
                 
             }
         });
 
-        if(resultado.error) {
-            setIsLoading(false);
-            // This point will only be reached if there is an immediate error when
-            // confirming the payment. Show error to your customer (for example, payment
-            // details incomplete)
-            setErrorMessage(resultado.error.message);
-        } else {
-            // Your customer will be redirected to your `return_url`. For some payment
-            // methods like iDEAL, your customer will be redirected to an intermediate
-            // site first to authorize the payment, then redirected to the `return_url`.
-        }
     };
 
     const handlePagoExitoso = async () => {
