@@ -161,7 +161,7 @@ const Reproductor = () => {
                                         className="cupon__boton"
                                         to="/comprar"
                                     >
-                                        {pago ? "Ver mi cupon" : "La clave solo dura 24 horas"}
+                                        {pago ? "Ver mi cupon" : "La clave tiene una validez de 24 horas"}
                                     </Link>
                                     {error && (
                                         <div class="alert alert-dismissible alert-danger">

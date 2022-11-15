@@ -9,7 +9,7 @@ const Ingreso = ({setActivarPagina}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(campo != "") {
-            await fetch("http://localhost/acceso/api/obtener_acceso.php", {
+            await fetch("https://normalismorural.com/acceso/api/obtener_acceso.php", {
             header: {
                 "Content-Type": "application/json"
             },
@@ -44,6 +44,7 @@ const Ingreso = ({setActivarPagina}) => {
                             </div>
                             <button type="submit" class="btn btn-primary">Acceder</button>
                         </div>
+                        colabora@normalismorural.com
                     </fieldset>
                 </form>
             </div>
