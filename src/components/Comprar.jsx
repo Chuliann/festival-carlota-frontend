@@ -114,10 +114,13 @@ const Comprar = () => {
                         ) : (
                             <form onSubmit={handleSubmit} className="form__precio">
                                 <legend className="text-center">Cupon para ver <br></br> "La piedra en el Zapato"</legend>
-                                <p className="text-center"><cite>(El monto minimo es 10mxn debido a procesamiento de impuestos)</cite></p>
+                                <p className="text-center"><cite>Ver "La piedra en el zapato" en pre-estreno solidario</cite></p>
                                 <div className="form__campo">
-                                    <label>Ingrese un monto valido</label>
-                                    <input step=".1" onChange={(e) => setPrecio(e.target.value)} type="number" placeholder="10$"></input>
+                                    <label>Ingresa un importe mayor a 25 pesos mexicanos</label>
+                                    <div>
+                                        <input step=".1" onChange={(e) => setPrecio(e.target.value)} type="number" placeholder=""></input>
+                                        mxn
+                                    </div>
                                 </div>
                                 {/* <div className="form__campo">
                                     <label>Mail: (opcional)</label>

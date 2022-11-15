@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     
     const respondio = localStorage.getItem("respondio");
-    if(respondio) setActivarSeccion(true);
+    if(respondio) setActivarSeccion(false);
   }, [])
 
   return (
@@ -52,6 +52,7 @@ function App() {
                   <p>para Normalistas Rurales</p>
                   <div className='cont-precio sitio'>
                     <span>Precio:</span>  <p> Contribución voluntaria</p>
+                    <p className='chiquito'>Con tu apoyo conseguiremos producir materiales de prensa y mandar la película a festivales internacionales de cine para darle visibilidad y prestigio al Normalismo Rural</p>
                   </div>
                 </div>
               </div>

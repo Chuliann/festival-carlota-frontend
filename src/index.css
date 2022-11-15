@@ -81,7 +81,7 @@ button {
 .info-titulo {
   font-family: "Benzin";
   padding: 1rem 1rem 0 1rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   position: relative;
 }
 
@@ -130,6 +130,11 @@ button {
   text-decoration: underline;
   display: inline-block;
   margin-left: .5rem;
+}
+
+.cont-precio .chiquito {
+ text-decoration: none;
+ font-size: .8rem;   
 }
 
 .cont-precio span {
@@ -304,7 +309,16 @@ button {
     margin-top: auto;
     font-size: .8rem;
     margin: 0;
+    padding: .3rem;
   }
+
+  .cont-precio span {
+    font-size: 1rem;
+  }
+  .cont-precio p {
+    margin: .3rem;
+  }
+  
 
 
 
