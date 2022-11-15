@@ -42,6 +42,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
         .then(function(result) {
             setIsLoading(false);
             try {
+                console.log(result);
                 switch (result.paymentIntent.status) {
                     case 'succeeded':
                         handlePagoExitoso();
@@ -67,7 +68,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
             }
         });
 
-        if (resultado.error) {
+        if(resultado.error) {
             setIsLoading(false);
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Show error to your customer (for example, payment
