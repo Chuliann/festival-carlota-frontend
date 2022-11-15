@@ -68,6 +68,11 @@ const Comprar = () => {
         }
     }, [])
 
+    useEffect(() => {
+        localStorage.setItem("cupon_normalismo", cupon);
+        location.reload();
+    }, [cupon])
+
     return (
         <div>  
             {cupon && modalAbierto ? (
