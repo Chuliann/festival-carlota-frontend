@@ -41,10 +41,6 @@ function App() {
     
     const respondio = localStorage.getItem("respondio");
     if(respondio) setActivarSeccion(true);
-    var cupon = localStorage.getItem("cupon");
-    if(cupon) {
-      setComproCupon(cupon);
-    }
   }, [])
 
   return (

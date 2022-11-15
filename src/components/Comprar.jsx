@@ -20,6 +20,8 @@ const Comprar = () => {
     const [cargando, setCargando] = useState(false);
     /* const [mail, setMail] = useState(""); */
     const [error, setError] = useState(false);
+    const [cupon, setCupon] = useState("");
+    const [modalAbierto, setModalAbierto] = useState(false);
 
 
 
@@ -31,14 +33,8 @@ const Comprar = () => {
             let datos = {
                 amount: parseFloat(precio * 100)
             }
-            /* if(mail != "") {
-                datos = {
-                    ...datos,
-                    mail
-                }
-            } */
             setCargando(true);
-            fetch("http://localhost/acceso/api/create-payment-intend.php", {
+            fetch("https://normalismorural.com/acceso/api/create-payment-intend.php", {
                 header: {
                     "Content-Type": "application/json"
                 },
@@ -52,7 +48,6 @@ const Comprar = () => {
         }
     }
 
-
     const activarError = () => {
         setError(true);
         setTimeout(() => {
@@ -61,19 +56,34 @@ const Comprar = () => {
     }
 
     const guardarSecreto = (data) => {
-        
-
-        setTimeout(() => {
-            setCargando(false);
-            setClientSecret(data.secret);
-        }, 1500)
+        setCargando(false);
+        setClientSecret(data.secret);
     }
-    
-    
 
+    useEffect(() => {
+        const cuponLocal = localStorage.getItem('cupon_normalismo');
+        if(cuponLocal) {
+            setCupon(cuponLocal);
+            setModalAbierto(true);
+        }
+    }, [])
 
     return (
         <div>  
+            {cupon && modalAbierto ? (
+                <div className="modalCodigo toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div className="toast-header">
+                        <strong className="me-auto">Codigo:</strong>
+                        <small>Quedan... horas</small>
+                        <button type="button" className="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close" onClick={() => setModalAbierto(false)}>
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div className="toast-body">
+                        {cupon}
+                    </div>
+                </div>
+            ) : null}
             <div className="comprar__navbar">
             <Link to="/" className="button_back">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-corner-down-left" width="35" height="35" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -89,7 +99,7 @@ const Comprar = () => {
                 <div className="comprar__info">
                     <img src={cartel} alt="cartel" className="comprar_image"></img>
                     <h2 className="text-center">Cupon valido por 24hs para ver <br></br> "La piedra en el Zapato"</h2>
-                    <p> <span className="negrita">Instrucciones de pago:</span><br></br> Ingrese el precio que desea pagar para ver la pelicula y proceda al pago. <br></br>Una vez confirmado el pago, le facilitaremos el codigo para poder ver la pelicula. <br></br> Al momento de ingresar el codigo, tendra 24 horas para ver la pelicula. <br></br> <cite>ADVERTENCIA:</cite> El cupon es de 1 solo uso. </p>
+                    <p> <span className="negrita">Instrucciones:</span><br></br> Ingrese el precio que desea pagar para ver la pelicula y proceda al pago. <br></br>Una vez confirmado el pago, le facilitaremos el codigo para poder ver la pelicula. <br></br> Al momento de ingresar el codigo, tendra 24 horas para ver la pelicula. <br></br> <cite>ADVERTENCIA:</cite> El cupon es de 1 solo uso. </p>
                     
                 </div>
                 {!clientSecret ? (
@@ -115,7 +125,7 @@ const Comprar = () => {
                         {error ? <Mensaje tipo="fracaso" algo={error}>Precio invalido</Mensaje> : null}    
                     </div> 
                 ) : (
-                    <Checkout clientSecret={clientSecret} precio={precio} />
+                    <Checkout setCupon={setCupon} clientSecret={clientSecret} precio={precio} />
                 )}
 
             </div>

@@ -1,13 +1,21 @@
 
 
-export const chequearCodigo = async () => {
+export const usarCupon = async (cupon) => {
+    const body = {
+      codigo: cupon
+    }
     try {
-        const response = await fetch(`http://localhost/api/create-checkout-session.php`);
-        const data = await response.json();
-        if(response.status === 200) {
-          console.log(data);
+      await fetch("http://localhost/acceso/api/usar_cupon.php", {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json"
         }
-      } catch (error) {
-        console.log(error);
-      }
+      })
+      .then(response => response.json())
+      .then(data => console.log(data));
+      
+    } catch (error) {
+      console.log(error);
+    }
 }

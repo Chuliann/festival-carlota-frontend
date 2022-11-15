@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
     "pk_test_51Lk8lnKsbDW2PTHgmmzQLLXDmYDVs9uZwd6c5QUXtzuGksAp9iol3afKVtcGNR8mVHjVL7iWfhDzdLCeWpEOGUNw00d1wjxV9F"
 );
 
-const CheckoutForm = ({ precio }) => {
+const CheckoutForm = ({ precio, setCupon }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -37,8 +37,14 @@ const CheckoutForm = ({ precio }) => {
             confirmParams: {
                 return_url: "http://127.0.0.1:5173/comprar",
             },
+            redirect: 'if_required'
         })
-        .then();
+        .then(function(result) {
+            setIsLoading(false);
+            if(result.paymentIntent.status === "succeeded") {
+                handlePagoExitoso();       
+            }
+        });
 
         if (error) {
             // This point will only be reached if there is an immediate error when
@@ -52,8 +58,8 @@ const CheckoutForm = ({ precio }) => {
         }
     };
 
-    const handlePagoExitoso = () => {
-        fetch('http://localhost/acceso/api/generar_cupon.php', {
+    const handlePagoExitoso = async () => {
+        await fetch('http://localhost/acceso/api/generar_cupon.php', {
             method: 'POST',
             body: JSON.stringify({
                 'pago': "exito"
@@ -64,8 +70,10 @@ const CheckoutForm = ({ precio }) => {
         })
         .then(response => response.json())
         .then(data => {
-            localStorage.setItem('cupon', data);
-        })
+            localStorage.setItem('cupon_normalismo', data);    
+            location.reload();
+        });
+        setCupon(localStorage.getItem('cupon_normalismo'));
     }
 
     useEffect(() => {
@@ -130,12 +138,12 @@ const CheckoutForm = ({ precio }) => {
                 </button>
             )}
             {/* Show error message to your customers */}
-            {errorMessage && <div>{errorMessage}</div>}
+            {errorMessage && <div className="alert alert-dismissible alert-danger">{errorMessage}</div>}
         </form>
     );
 };
 
-const Checkout = ({ clientSecret, precio }) => {
+const Checkout = ({ clientSecret, precio, setCupon }) => {
     const options = {
         clientSecret,
         appearance: {
@@ -149,7 +157,7 @@ const Checkout = ({ clientSecret, precio }) => {
     return (
         <div>
             <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm precio={precio} />
+                <CheckoutForm setCupon={setCupon} precio={precio} />
             </Elements>
         </div>
     );
