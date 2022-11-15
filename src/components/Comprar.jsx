@@ -29,7 +29,7 @@ const Comprar = () => {
         e.preventDefault();
 
 
-        if(precio >= 10) {
+        if(precio >= 25) {
             let datos = {
                 amount: parseFloat(precio * 100)
             }
@@ -130,7 +130,7 @@ const Comprar = () => {
                             </form>
                         )}
                         
-                        {error ? <Mensaje tipo="fracaso" algo={error}>Precio invalido</Mensaje> : null}    
+                        {error ? <Mensaje tipo="fracaso" algo={error}>Precio no valido</Mensaje> : null}    
                     </div> 
                 ) : (
                     <Checkout setCupon={setCupon} clientSecret={clientSecret} precio={precio} />

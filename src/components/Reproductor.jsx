@@ -62,14 +62,13 @@ const Reproductor = () => {
         } else {
             setPermiso(false);
             setError("Se termino el tiempo, compra otra clave o abandona el sitio.");
-            
         }
     };
 
     const loop = () => {
         setInterval(() => {
             chequearCupon();
-        }, 10000);
+        }, 600000);
     };
 
     useEffect(() => {

@@ -92,3 +92,28 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width:768px) {
+    .comprar__navbar {
+        padding: .5rem;
+    }
+
+    .button_back {
+        font-size: 1rem;
+    }
+    .button_back svg {
+        width: 20px;
+        height: 20px;
+    }
+    .comprar__navbar img {
+        max-width: 150px;
+    }
+
+    .comprar__section {
+        padding: .5rem;
+        grid-template-columns: 1fr;
+    }
+    .comprar__info {
+        padding: .3rem;
+    }
+}

@@ -1,0 +1,34 @@
+
+.ingreso {
+    height: 100vh;
+    background-image: url(../imgp/fondo2.png);
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingreso__modal {
+    background-color: white;
+    width: 60vw;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 4rem;
+}
+
+
+.ingreso__modal button {
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .ingreso__modal {
+        width: 90vw;
+    }
+
+    .ingreso__modal button {
+        margin-top: 20px;
+    }
+}

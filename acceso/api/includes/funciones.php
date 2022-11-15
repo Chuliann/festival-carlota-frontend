@@ -1,32 +1,4 @@
 <?php
-/*
-
-  ____          _____               _ _           _       
- |  _ \        |  __ \             (_) |         | |      
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___ 
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |        
-        |___/                               |___/         
-    
-____________________________________
-/ Si necesitas ayuda, contáctame en \
-\ https://parzibyte.me               /
- ------------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-Creado por Parzibyte (https://parzibyte.me).
-------------------------------------------------------------------------------------------------
-Si el código es útil para ti, puedes agradecerme siguiéndome: https://parzibyte.me/blog/sigueme/
-Y compartiendo mi blog con tus amigos
-También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0CkGB6AFUoBg?sub_confirmation=1
-------------------------------------------------------------------------------------------------
-*/ ?>
-<?php
 
 function crearCupon($cupon) 
 {
@@ -52,19 +24,17 @@ function obtenerCupon($codigo)
     return $sentencia->fetchObject();
 }
 
-function eliminarVideojuego($id)
+function compararCodigo($codigo)
 {
     $bd = obtenerConexion();
-    $sentencia = $bd->prepare("DELETE FROM videojuegos WHERE id = ?");
-    return $sentencia->execute([$id]);
+    $sentencia = $bd->prepare("SELECT * FROM codigo WHERE codigo = ?");
+    $sentencia->execute([$codigo]);
+    return $sentencia->fetchObject();
 }
 
-function actualizarVideojuego($videojuego)
-{
-    $bd = obtenerConexion();
-    $sentencia = $bd->prepare("UPDATE videojuegos SET nombre = ?, precio = ?, calificacion = ? WHERE id = ?");
-    return $sentencia->execute([$videojuego->nombre, $videojuego->precio, $videojuego->calificacion, $videojuego->id]);
-}
+
+
+
 
 function obtenerVideojuegoPorId($id)
 {
