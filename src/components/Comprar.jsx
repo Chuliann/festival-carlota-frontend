@@ -69,8 +69,9 @@ const Comprar = () => {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem("cupon_normalismo", cupon);
-        location.reload();
+        if(cupon && !localStorage.getItem("cupon_normalismo")) {
+            localStorage.setItem("cupon_normalismo", cupon);
+        }
     }, [cupon])
 
     return (
