@@ -1,0 +1,19 @@
+{
+    "name": "julian/api",
+    "require": {
+        "ramsey/uuid": "^4.5",
+        "stripe/stripe-php": "^9.8",
+        "firebase/php-jwt": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Julian\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julian Berton",
+            "email": "julianbertonb@gmail.com"
+        }
+    ]
+}
