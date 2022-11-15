@@ -62,11 +62,11 @@ const CheckoutForm = ({ precio, setCupon }) => {
                         setErrorMessage('Algo fue mal.');
                     break;
                 }
+                
+            } catch (error) {
                 if(result.error) {
                     setErrorMessage(result.error.message);
                 }
-            } catch (error) {
-                /* console.log(error); */
                 
             }
         });
@@ -109,7 +109,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
                     {`Pagar ${precio}mxn`}
                 </button>
             )}
-            {errorMessage && <div className="alert alert-dismissible alert-danger">{errorMessage}</div>}
+            {errorMessage ? <div className="alert alert-dismissible alert-danger">{errorMessage}</div> : null}
         </form>
     );
 };
