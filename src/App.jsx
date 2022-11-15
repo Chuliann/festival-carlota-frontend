@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     
     const respondio = localStorage.getItem("respondio");
-    if(respondio) setActivarSeccion(false);
+    if(respondio) setActivarSeccion(true);
 
     const ingresoCodigo = localStorage.getItem("ingreso");
     if(ingresoCodigo) setActivarPagina(true);

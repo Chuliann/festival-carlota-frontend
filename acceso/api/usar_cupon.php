@@ -4,7 +4,6 @@ include "cors.php";
 include 'includes/funciones.php';
 require "vendor/autoload.php";
 
-use \Firebase\JWT\JWT;
 
 $json = file_get_contents('php://input');
 $data = json_decode($json);

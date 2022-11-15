@@ -9,7 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Spinner from "./Spinner.jsx";
 
 const stripePromise = loadStripe(
-    "pk_test_51Lk8lnKsbDW2PTHgmmzQLLXDmYDVs9uZwd6c5QUXtzuGksAp9iol3afKVtcGNR8mVHjVL7iWfhDzdLCeWpEOGUNw00d1wjxV9F"
+    "pk_live_51Lk8lnKsbDW2PTHgW8twzg2yV6iXLLmJYRsJhZerPvh0LCHkGJx7NnhCcIDKGWhupUGxAXNPMK9iECwNcv3zHB7A00MeDTXgqN"
 );
 
 const CheckoutForm = ({ precio, setCupon }) => {

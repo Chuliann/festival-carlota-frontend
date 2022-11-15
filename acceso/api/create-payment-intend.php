@@ -16,7 +16,7 @@ $amount = filter_var($data->amount, FILTER_VALIDATE_FLOAT);
     }
 } */
 
-$stripe = new \Stripe\StripeClient('sk_test_51Lk8lnKsbDW2PTHgGLt5AtT0Iv7zJGyaR3WuZt8Jz5jiVDPS0Ixbh1uNSnCgPXc3oyFqwlKVie5N8QB7e65P0sgn00bRHNhBZr');
+$stripe = new \Stripe\StripeClient('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');
 if($amount) {
     try {
         $intend = $stripe->paymentIntents->create(

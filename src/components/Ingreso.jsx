@@ -38,13 +38,13 @@ const Ingreso = ({setActivarPagina}) => {
                     <fieldset>
                         <legend>Ingrese el codigo secreto para acceder</legend>
                         <div class="form-group row d-flex align-items-center justify-content-center">
-                            <label for="staticCode" class="col-sm-2 col-form-label">Codigo: </label>
+                            <label for="staticCode" class="col-sm-2 col-form-label">Codigo  </label>
                             <div class="col-sm-10">
                                 <input id="staticCode" type="text" onChange={(e) => setCampo(e.target.value)}></input>
                             </div>
                             <button type="submit" class="btn btn-primary">Acceder</button>
                         </div>
-                        colabora@normalismorural.com
+                        <p className="colabora-p">colabora@normalismorural.com</p>
                     </fieldset>
                 </form>
             </div>
