@@ -35,7 +35,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
             //`Elements` instance that was used to create the Payment Element
             elements,
             confirmParams: {
-                return_url: "http://127.0.0.1:5173/comprar",
+                return_url: "https://normalismorural.com/comprar",
             },
             redirect: 'if_required'
         })
@@ -59,7 +59,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
     };
 
     const handlePagoExitoso = async () => {
-        await fetch('http://localhost/acceso/api/generar_cupon.php', {
+        await fetch('https://normalismorural.com/acceso/api/generar_cupon.php', {
             method: 'POST',
             body: JSON.stringify({
                 'pago': "exito"
