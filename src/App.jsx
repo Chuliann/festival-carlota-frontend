@@ -5,10 +5,7 @@ import Reproductor from "./components/Reproductor.jsx";
 import Comprar from './components/Comprar.jsx';
 import Mensaje from './components/Mensaje.jsx';
 import PaymentStatus from './components/PaymentStatus.jsx';
-import Cupon from './components/Cupon.jsx';
 
-
-/* import { chequearCodigo } from './utils/funciones.js'; */
 
 import cartel from "./imgp/cartel.png";
 import boton from "./imgp/boton.png";
@@ -18,7 +15,6 @@ function App() {
   const [pregunta, setPregunta] = useState(0);
   const [activarSeccion, setActivarSeccion] = useState(false);
   const [respErronea, setRespErronea] = useState(false);
-  const [comproCupon, setComproCupon] = useState(null);
 
   const handleCuestionario = () => {
     if(pregunta === 1) {
@@ -88,7 +84,7 @@ function App() {
           <Reproductor />
         } />
 
-        <Route path='/comprar' element={comproCupon != "" ? <Comprar /> : <Cupon />} />
+        <Route path='/comprar' element={<Comprar />} />
         <Route path='/completado' element={<PaymentStatus />} />
 
 

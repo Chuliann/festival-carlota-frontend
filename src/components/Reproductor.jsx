@@ -15,7 +15,7 @@ const Reproductor = () => {
                 codigo: cuponInput,
             };
             try {
-                await fetch("http://localhost/acceso/api/usar_cupon.php", {
+                await fetch("https://normalismorural.com/acceso/api/usar_cupon.php", {
                     method: "POST",
                     body: JSON.stringify(body),
                     headers: {
@@ -40,7 +40,7 @@ const Reproductor = () => {
 
     const chequearCupon = async () => {
         try {
-            await fetch("http://localhost/acceso/api/obtener_cupon.php", {
+            await fetch("https://normalismorural.com/acceso/api/obtener_cupon.php", {
                 method: "POST",
                 body: JSON.stringify({
                     codigo: localStorage.getItem("cupon_normalismo"),
