@@ -16,7 +16,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (event) => {
@@ -63,6 +63,8 @@ const CheckoutForm = ({ precio, setCupon }) => {
         });
 
         if (error) {
+            setIsLoading(false);
+            console.log(error);
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Show error to your customer (for example, payment
             // details incomplete)
@@ -91,49 +93,6 @@ const CheckoutForm = ({ precio, setCupon }) => {
         });
         location.reload();
     }
-
-    useEffect(() => {
-
-        const clientSecret = new URLSearchParams(window.location.search).get(
-            'payment_intent_client_secret'
-        );
-        if (!stripe || !clientSecret) {
-            return;
-        }
-      
-          // Retrieve the "payment_intent_client_secret" query parameter appended to
-          // your return_url by Stripe.js
-        
-        stripe.retrievePaymentIntent(clientSecret)
-        .then(({paymentIntent}) => {
-          // Inspect the PaymentIntent `status` to indicate the status of the payment
-          // to your customer.
-          //
-          // Some payment methods will [immediately succeed or fail][0] upon
-          // confirmation, while others will first enter a `processing` state.
-          //
-          // [0]: https://stripe.com/docs/payments/payment-methods#payment-notification
-          switch (paymentIntent.status) {
-            case 'succeeded':
-              handlePagoExitoso();
-              break;
-  
-            case 'processing':
-              console.log("Payment processing. We'll update you when payment is received.");
-              break;
-  
-            case 'requires_payment_method':
-              // Redirect your user back to your payment page to attempt collecting
-              // payment again
-              console.log('Payment failed. Please try another payment method.');
-              break;
-  
-            default:
-              console.log('Something went wrong.');
-              break;
-          }
-        });
-    }, []);
 
     useEffect(() => {
         setIsLoading(false);
