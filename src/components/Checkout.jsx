@@ -41,7 +41,7 @@ const CheckoutForm = ({ precio, setCupon }) => {
         })
         .then(function(result) {
             setIsLoading(false);
-            switch (paymentIntent.status) {
+            switch (result.paymentIntent.status) {
                 case 'succeeded':
                     handlePagoExitoso();
                     break;
