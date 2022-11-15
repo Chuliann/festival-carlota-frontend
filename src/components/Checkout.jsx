@@ -71,7 +71,9 @@ const CheckoutForm = ({ precio, setCupon }) => {
         .then(response => response.json())
         .then(data => {
             setCupon(data);
+            localStorage.setItem('cupon_normalismo', data);    
         });
+        location.reload();
     }
 
     useEffect(() => {
