@@ -71,8 +71,6 @@ const CheckoutForm = ({ precio, setCupon }) => {
         .then(response => response.json())
         .then(data => {
             setCupon(data);
-            console.log(data);
-            location.reload();
         });
     }
 
