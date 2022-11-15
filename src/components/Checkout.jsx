@@ -41,30 +41,33 @@ const CheckoutForm = ({ precio, setCupon }) => {
         })
         .then(function(result) {
             setIsLoading(false);
-            switch (result.paymentIntent.status) {
-                case 'succeeded':
-                    handlePagoExitoso();
+            try {
+                switch (result.paymentIntent.status) {
+                    case 'succeeded':
+                        handlePagoExitoso();
+                        break;
+            
+                      case 'processing':
+                        setErrorMessage("El pago se esta procesando. Te avisaremos cuando llegue.");
+                        break;
+            
+                      case 'requires_payment_method':
+                        // Redirect your user back to your payment page to attempt collecting
+                        // payment again
+                        setErrorMessage('Pago fallido. Intente otro metodo.');
+                        break;
+            
+                    default:
+                        setErrorMessage('Algo fue mal.');
                     break;
-        
-                  case 'processing':
-                    setErrorMessage("El pago se esta procesando. Te avisaremos cuando llegue.");
-                    break;
-        
-                  case 'requires_payment_method':
-                    // Redirect your user back to your payment page to attempt collecting
-                    // payment again
-                    setErrorMessage('Pago fallido. Intente otro metodo.');
-                    break;
-        
-                default:
-                    setErrorMessage('Algo fue mal.');
-                break;
+                }
+            } catch (error) {
+                console.log(error);
             }
         });
 
         if (error) {
             setIsLoading(false);
-            console.log(error);
             // This point will only be reached if there is an immediate error when
             // confirming the payment. Show error to your customer (for example, payment
             // details incomplete)
