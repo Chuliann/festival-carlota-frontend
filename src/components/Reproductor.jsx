@@ -77,6 +77,7 @@ const Reproductor = () => {
     };
 
     const loop = () => {
+        chequearCupon();
         setInterval(() => {
             chequearCupon();
         }, 600000);
