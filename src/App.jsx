@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Reproductor from "./components/Reproductor.jsx";
 import Comprar from './components/Comprar.jsx';
 import Mensaje from './components/Mensaje.jsx';
-import PaymentStatus from './components/PaymentStatus.jsx';
 import Ingreso from './components/Ingreso.jsx';
 
 
@@ -96,7 +95,6 @@ function App() {
           )} />
 
         <Route path='/comprar' element={<Comprar />} />
-        <Route path='/completado' element={<PaymentStatus />} />
 
 
       </Routes>

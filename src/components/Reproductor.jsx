@@ -123,7 +123,7 @@ const Reproductor = () => {
                         src="https://player.vimeo.com/video/745694304?h=d3650cd2a6&amp;app_id=122963\"
                         width="1024"
                         height="600"
-                        frameborder="0"
+                        frameBorder="0"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowFullScreen
                     ></iframe>

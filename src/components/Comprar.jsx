@@ -60,12 +60,18 @@ const Comprar = () => {
         setClientSecret(data.secret);
     }
 
+    const chequearAcceso = () => {
+        const ingresoPagina = localStorage.getItem("ingreso")
+        if(!ingresoPagina) window.location.replace("https://normalismorural.com");;
+    }
+
     useEffect(() => {
         const cuponLocal = localStorage.getItem('cupon_normalismo');
         if(cuponLocal) {
             setCupon(cuponLocal);
             setModalAbierto(true);
         }
+        chequearAcceso();
     }, [])
 
     useEffect(() => {
